@@ -49,6 +49,9 @@ class RemoveExposure(bpy.types.Operator):
                         shiftvalue = shiftvalue + 1
             return {'FINISHED'}
 
+
+
+
 def init():
     print('timer end reached')
     hasExpAddHotkey = False
