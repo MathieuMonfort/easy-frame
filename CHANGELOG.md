@@ -1,5 +1,9 @@
 # Changelog     
 
+##[1.0.2]
+### Modified 
+- Corrected Operator (bpy.ops.gpencil.exposure_remove) So it always leaves at least 1 exposure to every frame.
+
 ## [1.0.1]
 ### Modified
 - Modified Structure for Multiple files implementation.

@@ -9,7 +9,6 @@ class AddExposure(bpy.types.Operator):
         if bpy.context.active_object.type == 'GPENCIL':
             gpencil = bpy.context.active_object
             for lay in gpencil.data.layers:
-                #if lay.select == True:
                 activeFrameCount = 0
                 for frame in lay.frames:
                     if frame.select == True:
@@ -26,15 +25,20 @@ class RemoveExposure(bpy.types.Operator):
     bl_options = {'REGISTER','UNDO'}
 
     def execute(self,context):
-        if bpy.context.active_object.type == 'GPENCIL':
-            gpencil = bpy.context.active_object
-            for lay in gpencil.data.layers:
-                shiftvalue = 0
-                for frame in lay.frames:
-                    frame.frame_number = frame.frame_number - shiftvalue
-                    if frame.select == True:
-                        shiftvalue = shiftvalue + 1
-            return {'FINISHED'}
+        try:
+            if bpy.context.active_object.type == 'GPENCIL':
+                gpencil = bpy.context.active_object
+                for lay in gpencil.data.layers:
+                    shiftvalue = 0
+                    for i in range(0,len(lay.frames)-1): 
+                        lay.frames[i].frame_number -= shiftvalue
+                        if (lay.frames[i].select == True) and (lay.frames[i].frame_number < lay.frames[i+1].frame_number - (shiftvalue +1)):
+                            shiftvalue += 1
+                    lay.frames[len(lay.frames)-1].frame_number -= shiftvalue
+        except IndexError:
+            print("Index Error Ignored")
+        return {'FINISHED'}
+
 
 
 def register():

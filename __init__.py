@@ -2,7 +2,7 @@ bl_info = {
     "name":"Easy Frame",
     "category":"Grease Pencil",
     "blender":(2,80,0),
-    "version":(1,0,1),
+    "version":(1,0,2),
     "author":"Mathieu Monfort",
     "description":"2D Animation add on for Grease Pencil, adding features for natural frame manipulation" 
 }
